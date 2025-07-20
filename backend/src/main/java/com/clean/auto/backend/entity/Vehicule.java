@@ -6,10 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "vehicules")
+@Table(name = "vehicule")
 public class Vehicule {
 
     @Id
@@ -20,10 +21,13 @@ public class Vehicule {
     @JoinColumn(name = "users_id")
     private Users users;
 
+    @Column(name = "type", nullable = false)
     private String type;
 
+    @Column(name = "marque", nullable = false)
     private String marque;
 
+    @Column(name = "modele", nullable = false)  
     private String modele;
 
     public Vehicule() {
@@ -72,7 +76,7 @@ public class Vehicule {
     public String getModele() {
         return modele;
     }
-     
+
     public void setModele(String modele) {
         this.modele = modele;
     }
