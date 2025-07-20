@@ -1,13 +1,13 @@
 package com.clean.auto.backend.entity;
 
-import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
+
 
 @Entity
 @Table(name = "vehicule")
@@ -17,9 +17,9 @@ public class Vehicule {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToAny
-    @JoinColumn(name = "users_id")
+    @ManyToOne
     private Users users;
+
 
     @Column(name = "type", nullable = false)
     private String type;
@@ -34,11 +34,19 @@ public class Vehicule {
     }
 
     public Vehicule(Users users, String type, String marque, String modele) {
-        this.users = users;
+        this.users = users; 
         this.type = type;
         this.marque = marque;
         this.modele = modele;
     }
+
+    public Users getUsers() {
+        return users;
+    } 
+       
+    public void setUsers(Users users) {
+        this.users = users;
+    }       
 
     public Long getId() {
         return id;
@@ -46,14 +54,6 @@ public class Vehicule {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Users getUsers() {
-        return users;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
     }
 
     public String getType() {
