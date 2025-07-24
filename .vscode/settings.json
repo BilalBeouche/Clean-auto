@@ -1,0 +1,7 @@
+{
+    "java.completion.imports.enabled": true,
+    "java.codeGeneration.addImportAtCursor": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    }
+}

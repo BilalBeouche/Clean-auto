@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "users")
 public class Users {
@@ -49,12 +48,9 @@ public class Users {
         return firstName;
     }
 
-
-
     public void setFirstName(String first_name) {
         this.firstName = first_name;
     }
-
 
     public String getLastName() {
         return lastName;
@@ -85,11 +81,14 @@ public class Users {
     }
 
     public void setPhoneNumber(String phone_number) {
-        this.phoneNumber = phone_number;  
+        this.phoneNumber = phone_number;
 
     }
 
+    @Override
+    public String toString() {
+        return "Users{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
+                + ", email='" + email + '\'' + ", phoneNumber='" + phoneNumber + '\'' + '}';
+    }
 
-    
-    
 }
