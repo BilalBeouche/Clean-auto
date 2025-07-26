@@ -3,5 +3,6 @@
     "java.codeGeneration.addImportAtCursor": true,
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit"
-    }
+    },
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

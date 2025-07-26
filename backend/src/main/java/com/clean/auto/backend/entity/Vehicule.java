@@ -14,6 +14,7 @@ public class Vehicule {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+
     private Long idVehicule;
 
     @ManyToOne
