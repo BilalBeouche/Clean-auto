@@ -35,12 +35,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String jwt;
         final String username;
 
+        System.out.println("Request URI: " + request.getRequestURI());
+
         // Ignore les endpoints de login/register
         String path = request.getRequestURI();
-        if (path.equals("/api/auth/**")) {
+        if (path.startsWith("/api/auth/")) {
             filterChain.doFilter(request, response);
             return;
-        }
+        }        
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);

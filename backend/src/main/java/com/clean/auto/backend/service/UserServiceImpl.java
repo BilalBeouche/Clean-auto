@@ -6,14 +6,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.clean.auto.backend.entity.Users;
+import com.clean.auto.backend.exception.ResourceAlreadyExistsException;
 import com.clean.auto.backend.repository.UsersRepository;
+
 
 @Service
 public class UserServiceImpl implements UserService {
-
     private final UsersRepository usersRepository;
-
     private final PasswordEncoder passwordEncoder;
+
 
     public UserServiceImpl(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
@@ -22,10 +23,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users saveUser(Users user) {
-
         Users existingUser = usersRepository.findByEmail(user.getEmail());
         if (existingUser != null) {
-            throw new RuntimeException("Adresse mail déja existant : " + user.getEmail());
+            throw new ResourceAlreadyExistsException("Adresse mail déjà existante : " + user.getEmail());
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEmail(user.getEmail().toLowerCase());// Hash the password
@@ -44,11 +44,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users updateUser(Long id, Users user) {
-        if (usersRepository.existsById(id)) {
-            user.setId(id);
-            return usersRepository.save(user);
+        Users existingUser = usersRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec l'id : " + id));
+
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setLastName(user.getLastName());
+        existingUser.setEmail(user.getEmail().toLowerCase());
+        existingUser.setPhoneNumber(user.getPhoneNumber());
+
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+        existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        return null; // or throw an exception
+
+        return usersRepository.save(existingUser);
     }
 
     @Override
