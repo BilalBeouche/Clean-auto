@@ -51,20 +51,22 @@ public class UserController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody Users user) {
-        Users updatedUser = userService.updateUser(id, user);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // Vérifie si un mot de passe a été fourni
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            System.out.println("modication effectué ");
+        }
 
-        Users updateUser = userService.updateUser(id, user);
+        Users updatedUser = userService.updateUser(id, user);
+
         if (updatedUser != null) {
-            // Assurez-vous que le mot de passe est chiffré avant de le renvoyer
-            return ResponseEntity.ok(updateUser); // 200 OK avec user mis à jour en body
+            return ResponseEntity.ok(updatedUser);
         } else {
-            return ResponseEntity.notFound().build(); // 404 Not Found
+            return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUser(id);
             return ResponseEntity.noContent().build(); // 204 No Content

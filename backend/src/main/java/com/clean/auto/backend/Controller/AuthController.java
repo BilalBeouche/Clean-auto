@@ -33,8 +33,7 @@ public class AuthController {
             UserService userService,
             AuthenticationManager authenticationManager,
             CustomUserDetailsService userDetailsService,
-            JwtUtil jwtUtil
-    ) {
+            JwtUtil jwtUtil) {
         this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
@@ -48,11 +47,19 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+
+        System.out.println("Password reçu : " + request.getPassword());
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-        );
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+
+        System.out.println(
+                " COUCOU " + new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+
         final UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        System.out.println("3");
+
         final String jwt = jwtUtil.generateToken(userDetails);
+
         return ResponseEntity.ok(new AuthResponse(jwt));
     }
 }

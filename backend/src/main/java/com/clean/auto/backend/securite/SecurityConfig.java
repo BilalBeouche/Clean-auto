@@ -2,6 +2,7 @@ package com.clean.auto.backend.securite;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -12,7 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter; // <-- Import nécessaire
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.clean.auto.backend.securite.filter.JwtAuthenticationFilter;
 import com.clean.auto.backend.service.CustomUserDetailsService;
@@ -21,14 +22,13 @@ import com.clean.auto.backend.service.CustomUserDetailsService;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // On déclare les dépendances en 'final'
     private final CustomUserDetailsService userDetailsService;
-    private final JwtAuthenticationFilter JwtAuthenticationFilter;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    // On injecte via le constructeur
-    public SecurityConfig(CustomUserDetailsService userDetailsService, JwtAuthenticationFilter JwtAuthenticationFilter) {
+    public SecurityConfig(CustomUserDetailsService userDetailsService,
+            JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.userDetailsService = userDetailsService;
-        this.JwtAuthenticationFilter = JwtAuthenticationFilter;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
     @Bean
@@ -54,12 +54,15 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll() // Simplifié pour tout le chemin /api/auth
-                .anyRequest().authenticated())
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/allUsers/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/update/{id}/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/delete/{id}/**").authenticated()
+                        .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
-                .addFilterBefore(JwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 }
