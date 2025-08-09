@@ -1,8 +1,11 @@
 package com.clean.auto.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,13 +16,13 @@ import jakarta.persistence.Table;
 public class Vehicule {
 
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVehicule;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Users users;
+    @JsonBackReference
+    private Users user;
 
     @Column(name = "type", nullable = false)
     private String type;
@@ -33,19 +36,19 @@ public class Vehicule {
     public Vehicule() {
     }
 
-    public Vehicule(Users users, String type, String marque, String modele) {
-        this.users = users;
+    public Vehicule(Users user, String type, String marque, String modele) {
+        this.user = user;
         this.type = type;
         this.marque = marque;
         this.modele = modele;
     }
 
-    public Users getUsers() {
-        return users;
+    public Users getUser() {
+        return user;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -82,8 +85,12 @@ public class Vehicule {
 
     @Override
     public String toString() {
-        return "Vehicule{" + "idVehicule=" + idVehicule + ", users=" + users + ", type='" + type + '\'' + ", marque='"
-                + marque + '\'' + ", modele='" + modele + '\'' + '}';
+        return "Vehicule{" +
+                "idVehicule=" + idVehicule +
+                ", user=" + user +
+                ", type='" + type + '\'' +
+                ", marque='" + marque + '\'' +
+                ", modele='" + modele + '\'' +
+                '}';
     }
-
 }

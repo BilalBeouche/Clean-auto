@@ -56,8 +56,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/allUsers/**").permitAll()
+                        .requestMatchers("/api/prestations/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/update/{id}/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/delete/{id}/**").authenticated()
+                        .requestMatchers("/api/vehicules/**").authenticated()
+                        .requestMatchers("/api/reservation/**").authenticated()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

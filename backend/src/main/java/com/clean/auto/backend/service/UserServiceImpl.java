@@ -1,6 +1,7 @@
 package com.clean.auto.backend.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users saveUser(Users user) {
-        Users existingUser = usersRepository.findByEmail(user.getEmail());
-        if (existingUser != null) {
+        Optional<Users> existingUser = usersRepository.findByEmail(user.getEmail());
+        if (existingUser.isPresent()) {
             throw new ResourceAlreadyExistsException("Adresse mail déjà existante : " + user.getEmail());
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
