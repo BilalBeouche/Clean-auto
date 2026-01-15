@@ -1,9 +1,12 @@
 package com.clean.auto.backend.entity;
 
+import com.clean.auto.backend.enums.TypeVehicule;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,8 +27,9 @@ public class Vehicule {
     @JsonBackReference
     private Users user;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private String type;
+    private TypeVehicule typeVehicule;
 
     @Column(name = "marque", nullable = false)
     private String marque;
@@ -36,9 +40,9 @@ public class Vehicule {
     public Vehicule() {
     }
 
-    public Vehicule(Users user, String type, String marque, String modele) {
+    public Vehicule(Users user, TypeVehicule typeVehicule, String marque, String modele) {
         this.user = user;
-        this.type = type;
+        this.typeVehicule = typeVehicule;
         this.marque = marque;
         this.modele = modele;
     }
@@ -59,12 +63,12 @@ public class Vehicule {
         this.idVehicule = id;
     }
 
-    public String getType() {
-        return type;
+    public TypeVehicule getType() {
+        return typeVehicule;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeVehicule(TypeVehicule typeVehicule) {
+        this.typeVehicule = typeVehicule;
     }
 
     public String getMarque() {
@@ -88,7 +92,7 @@ public class Vehicule {
         return "Vehicule{" +
                 "idVehicule=" + idVehicule +
                 ", user=" + user +
-                ", type='" + type + '\'' +
+                ", type='" + typeVehicule + '\'' +
                 ", marque='" + marque + '\'' +
                 ", modele='" + modele + '\'' +
                 '}';

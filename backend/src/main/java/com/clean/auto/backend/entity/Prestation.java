@@ -2,12 +2,14 @@ package com.clean.auto.backend.entity;
 
 import com.clean.auto.backend.enums.PrestationType;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +34,9 @@ public class Prestation {
         this.namePrestation = namePrestation;
         this.description = Description;
     }
+
+    @OneToOne(mappedBy = "prestation", cascade = CascadeType.ALL)
+    private Tarif tarif;
 
     public Long getId() {
         return idPrestation;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clean.auto.backend.entity.Users;
 import com.clean.auto.backend.service.UserService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -49,9 +51,10 @@ public class UserController {
         }
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/updateUser/{id}")
     public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody Users user) {
-        // Vérifie si un mot de passe a été fourni
+        // Vérifie si un mot de passe a été fournie
+        System.out.println("error");
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {
             System.out.println("modication effectué ");
         }
@@ -65,7 +68,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUser(id);

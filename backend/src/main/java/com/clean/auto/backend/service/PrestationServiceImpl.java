@@ -28,4 +28,9 @@ public class PrestationServiceImpl implements PrestationService {
         return prestationRepository.save(prestation);
     }
 
+    @Override
+    public void deletePresta(Long id) {
+        prestationRepository.deleteById(id);
+    }
+
 }

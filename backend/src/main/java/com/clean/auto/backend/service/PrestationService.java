@@ -12,4 +12,6 @@ public interface PrestationService {
     List<Prestation> getAllPrestations();
 
     Prestation savePresta(Prestation prestation);
+
+    void deletePresta(Long id);
 }
