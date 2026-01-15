@@ -1,8 +1,14 @@
 package com.clean.auto.backend.entity;
 
+import com.clean.auto.backend.enums.TypeVehicule;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,16 +19,17 @@ import jakarta.persistence.Table;
 public class Vehicule {
 
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVehicule;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Users users;
+    @JsonBackReference
+    private Users user;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private String type;
+    private TypeVehicule typeVehicule;
 
     @Column(name = "marque", nullable = false)
     private String marque;
@@ -33,19 +40,19 @@ public class Vehicule {
     public Vehicule() {
     }
 
-    public Vehicule(Users users, String type, String marque, String modele) {
-        this.users = users;
-        this.type = type;
+    public Vehicule(Users user, TypeVehicule typeVehicule, String marque, String modele) {
+        this.user = user;
+        this.typeVehicule = typeVehicule;
         this.marque = marque;
         this.modele = modele;
     }
 
-    public Users getUsers() {
-        return users;
+    public Users getUser() {
+        return user;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -56,12 +63,12 @@ public class Vehicule {
         this.idVehicule = id;
     }
 
-    public String getType() {
-        return type;
+    public TypeVehicule getType() {
+        return typeVehicule;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeVehicule(TypeVehicule typeVehicule) {
+        this.typeVehicule = typeVehicule;
     }
 
     public String getMarque() {
@@ -82,8 +89,12 @@ public class Vehicule {
 
     @Override
     public String toString() {
-        return "Vehicule{" + "idVehicule=" + idVehicule + ", users=" + users + ", type='" + type + '\'' + ", marque='"
-                + marque + '\'' + ", modele='" + modele + '\'' + '}';
+        return "Vehicule{" +
+                "idVehicule=" + idVehicule +
+                ", user=" + user +
+                ", type='" + typeVehicule + '\'' +
+                ", marque='" + marque + '\'' +
+                ", modele='" + modele + '\'' +
+                '}';
     }
-
 }

@@ -18,7 +18,7 @@ public class Avis {
     private Long idAvis;
 
     @ManyToOne
-    @JoinColumn(name = "idReservation", nullable = false, referencedColumnName = "idReservation ")
+    @JoinColumn(name = "idReservation", nullable = false, referencedColumnName = "idReservation")
     private Reservation reservation;
 
     private int note;
