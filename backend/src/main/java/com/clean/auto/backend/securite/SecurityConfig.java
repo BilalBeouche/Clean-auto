@@ -65,6 +65,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/vehicules/**").authenticated()
                         .requestMatchers("/api/reservation/**").authenticated()
                         .requestMatchers("/api/avis/**").authenticated()
+                        .requestMatchers("/api/avis/allAvis").authenticated()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
