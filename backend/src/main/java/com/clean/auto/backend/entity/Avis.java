@@ -17,8 +17,8 @@ public class Avis {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long idAvis;
 
-    @ManyToOne
-    @JoinColumn(name = "idReservation", nullable = false, referencedColumnName = "idReservation")
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "idReservation", nullable = true, referencedColumnName = "idReservation")
     private Reservation reservation;
 
     private int note;
@@ -53,7 +53,7 @@ public class Avis {
         this.reservation = reservation;
     }
 
-    public int note() {
+    public int getNote() {
         return note;
     }
 

@@ -36,7 +36,7 @@ public class AvisServiceImpl implements AvisService {
                 .orElseThrow(() -> new RuntimeException("Avis non trouvé avec l'id" + id));
 
         existingaAvis.setCommentaire(avis.getCommentaire());
-        existingaAvis.setNote(avis.note());
+        existingaAvis.setNote(avis.getNote());
         existingaAvis.setGetDateAvis(avis.getDateAvis());
 
         return avisRepository.save(existingaAvis);

@@ -75,7 +75,22 @@
   }
 
   .cardAvis .author {
-    margin-top: 15px;
+    margin-top: 10px;
     font-weight: bold;
     text-align: right;
   }
+
+  .note{
+    position: absolute;
+  bottom: 20px;
+  right: 20px;
+    font-weight: bold;
+  }
+
+  .etoiles {
+    
+    position: absolute;
+    left: 20px;
+    top: 20px;
+  }
+

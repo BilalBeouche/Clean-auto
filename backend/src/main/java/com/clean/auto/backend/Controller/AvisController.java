@@ -2,6 +2,7 @@ package com.clean.auto.backend.Controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,23 +33,26 @@ public class AvisController {
 
     @PostMapping("/createAvis")
     public ResponseEntity<?> createAvis(@RequestBody Avis avis) {
-        if (avis.getReservation() == null || avis.getReservation().getIdReservation() == null) {
 
-            return ResponseEntity.badRequest().body("reservation non trouvé");
+        if (avis.getReservation() != null && avis.getReservation().getIdReservation() != null) {
+
+            Reservation reservation = reservationRepository
+                    .findById(avis.getReservation().getIdReservation())
+                    .orElse(null);
+
+            if (reservation == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Reservation introuvable");
+            }
+
+            avis.setReservation(reservation);
         }
-        System.out.println(avis.getReservation());
 
-        Reservation reservation = reservationRepository.findById(avis.getReservation().getIdReservation())
-                .orElseThrow(() -> new RuntimeException("Reservation introuvable"));
-
-        avis.setReservation(reservation);
         Avis avisSaved = avisService.saveAvis(avis);
-
         return ResponseEntity.ok(avisSaved);
-
     }
 
-    @GetMapping("allAvis")
+    @GetMapping("/allAvis")
     public List<Avis> getAllAvis() {
         return avisService.getAllAvis();
     }
