@@ -1,0 +1,18 @@
+
+<H1>Préstations</H1>
+<div class="container">
+
+    @for(prestation of prestations; track prestation.id ){
+     
+        <div class="card">
+            <h2>{{prestation.namePrestation}}</h2>
+
+            <p>-</p>     
+            <p>-</p>     
+        <p>{{prestation.description}}</p>
+        <p>Prix : 80$</p>
+        <button routerLink="/reservations">Réservation</button>
+    </div>
+  
+}
+</div>

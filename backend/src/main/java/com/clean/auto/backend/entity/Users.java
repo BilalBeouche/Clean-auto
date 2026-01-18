@@ -1,40 +1,54 @@
 package com.clean.auto.backend.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
 
 @Entity
 @Table(name = "users")
 public class Users {
 
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name", nullable = false)
-    private String first_name;
-    @Column(name = "last_name", nullable = false)
-    private String last_name;
-    @Column(name = "email", nullable = false, unique = true)
+    private String firstName;
+
+    private String lastName;
+
+    @Column(nullable = false, unique = true)
     private String email;
-    @Column(name = "password", nullable = false)
+
+    @Column(nullable = false)
     private String password;
-    @Column(name = "phone_number", nullable = false, unique = true)
-    private String phone_number;
+
+    private String phoneNumber;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Vehicule> vehicules = new ArrayList<>();
 
     public Users() {
     }
 
-    public Users(String first_name, String last_name, String email, String password, String phone_number) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Users(String firstName, String lastName, String email, String password, String phoneNumber,
+            List<Vehicule> vehicules) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.phone_number = phone_number;
+        this.phoneNumber = phoneNumber;
+        this.vehicules = vehicules;
     }
 
     public Long getId() {
@@ -46,22 +60,19 @@ public class Users {
     }
 
     public String getFirstName() {
-        return first_name;
+        return firstName;
     }
-
-
 
     public void setFirstName(String first_name) {
-        this.first_name = first_name;
+        this.firstName = first_name;
     }
 
-
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
 
     public void setLastName(String last_name) {
-        this.last_name = last_name;
+        this.lastName = last_name;
     }
 
     public String getEmail() {
@@ -81,15 +92,29 @@ public class Users {
     }
 
     public String getPhoneNumber() {
-        return phone_number;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phone_number) {
-        this.phone_number = phone_number;  
-
+        this.phoneNumber = phone_number;
     }
 
+    public List<Vehicule> getVehicules() {
+        return vehicules;
+    }
 
-    
-    
+    public void setVehicules(List<Vehicule> vehicules) {
+        this.vehicules = vehicules;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }

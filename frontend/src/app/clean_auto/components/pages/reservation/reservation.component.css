@@ -1,0 +1,9 @@
+h1 {
+    text-align: center;
+    color: white;
+    padding-top: 150px;
+}
+.reservation{
+    min-width: 320px;
+    height: 700px;
+}
