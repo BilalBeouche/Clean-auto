@@ -2,31 +2,18 @@
 
 <h2>Ce que disent nos clients</h2>
 
+
 <div class="avis-container">
-  <div class="cardAvis">
-    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Jeffrey Brown">
-    <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
-    <div class="author">- Fael Brown</div>
-  </div>
 
-  <div class="avis-container">
-  <div class="cardAvis">
-    <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Jeffrey Brown">
-    <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
-    <div class="author">- Hichem Brown</div>
-  </div>
-
-  <div class="cardAvis">
-    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria Chen">
-    <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
-    <div class="author">- Bilel Beouche</div>
-  </div>
-
+    @for (avis of avis; track $index) {
     <div class="cardAvis">
-    <img src="https://randomuser.me/api/portraits/women/46.jpg" alt="Maria Chen">
-    <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
-    <div class="author">- sabrina Beouche</div>
-  </div>
+      <img src="https://randomuser.me/api/portraits/men/32.jpg"  alt="{{avis.note}}">
+      <div class="etoile">⭐⭐⭐⭐</div> 
+      <p>{{avis.commentaire}}</p>
+      <p>{{avis.dateAvis}}</p>
+      <div class="note"><p>{{avis.note}} /10</p></div>
+    </div>
+  }
 
 </div>
 
