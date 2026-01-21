@@ -1,0 +1,21 @@
+
+
+<H1>Login</H1>
+<div class="form">
+
+  <label for="email">Email : </label>
+  <input type="email" [(ngModel)]="email" placeholder="Email" />
+
+  <label for="password">Password : </label>
+  <input type="password" [(ngModel)]="password" placeholder="Password" />
+
+  <button (click)="login()">Se connecter</button>
+
+  @if (succes) {
+    <p class="succes">{{ succes }} </p>  
+  }@else {
+    <p class="err">{{ err }}</p>
+  }
+  
+
+</div>

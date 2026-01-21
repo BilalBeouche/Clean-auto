@@ -49,6 +49,12 @@ button {
     
 }
 
+.logout{
+    background: rgb(220, 75, 75);
+
+
+}
+
 button:hover{
     color: rgb(60, 161, 189);
     transform: scale(1.3);
@@ -56,4 +62,10 @@ button:hover{
 
 a{
     text-decoration: none;
+}
+
+span {
+    margin-left: 8px;
+    color: white;
+    font-weight: bold;
 }

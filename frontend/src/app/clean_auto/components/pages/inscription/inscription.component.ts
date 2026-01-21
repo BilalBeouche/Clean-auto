@@ -48,9 +48,9 @@ export class InscriptionComponent {
     this.userService.createUser(payload).subscribe({
       next: (response: Users) => {
         console.log('Utilisateur créé avec succes:', response);
+        this.router.navigate(['/login']);
+        // Après la création réussie, rediriger vers la page d'accueil ou de connexion
 
-        
-        this.router.navigate(['/home']);
       },
       error: (error: any) => {
         console.error('Erreur lors de la création de l\'utilisateur:', error);

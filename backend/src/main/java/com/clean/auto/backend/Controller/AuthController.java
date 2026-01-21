@@ -20,7 +20,7 @@ import com.clean.auto.backend.service.UserService;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
 
     // On déclare les dépendances réellement nécessaires
