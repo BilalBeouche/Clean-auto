@@ -1,0 +1,55 @@
+h1 {
+    text-align: center;
+    color: white;
+    padding-top: 150px;
+}
+
+label {
+    font-weight: bold;
+    color: white;
+}
+
+.form {
+    margin: auto;
+    width: 35%;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    display: flex;
+    margin: 20px auto;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px #45a049;
+    
+}
+
+.succes{
+    margin: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: green;
+
+}
+
+.err{
+   text-align: center;
+    font-weight: bold;
+    color: red;
+}
