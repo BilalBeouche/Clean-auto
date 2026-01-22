@@ -51,6 +51,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // Autorisé les requette HTTP provenant de Postman ou d'autres clients et regles
+        // de securite
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
@@ -60,6 +62,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/prestations/**").permitAll()
                         .requestMatchers("/api/allPrestations/**").permitAll()
                         .requestMatchers("/api/avis/allAvis").permitAll()
+                        .requestMatchers("/api/tarifs/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/prestations/deletePresta/{id}/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/updateUser/{id}/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/deleteUser/{id}/**").authenticated()

@@ -10,8 +10,11 @@
             <p>-</p>     
             <p>-</p>     
         <p>{{prestation.description}}</p>
-        <p>Prix : 80$</p>
-        <button routerLink="/reservations">Réservation</button>
+        <p>Prix : 80 €</p>
+
+        @if(authService.isLoggedIn()){
+            <button routerLink="/reservations">Réserver</button>
+        }
     </div>
   
 }
