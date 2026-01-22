@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from "@angular/router";
+import { AuthService } from '../../../auth/service/auth.service';
 import { Prestations } from '../../../model/Prestations.model';
 import { PrestationService } from '../../../services/prestation.service';
 
@@ -11,6 +12,9 @@ import { PrestationService } from '../../../services/prestation.service';
 })
 export class PrestationsComponent {
 
+
+  authService = inject(AuthService);
+  
   prestations: Prestations[] = [];
 
   prestationService = inject(PrestationService)
