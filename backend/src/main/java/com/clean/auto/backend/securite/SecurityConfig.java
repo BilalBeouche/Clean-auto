@@ -68,7 +68,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/deleteUser/{id}/**").authenticated()
                         .requestMatchers("/api/vehicules/**").authenticated()
                         .requestMatchers("/api/reservation/**").authenticated()
-                        .requestMatchers("/api/avis/**").authenticated()
+                        .requestMatchers("/api/avis/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

@@ -4,4 +4,5 @@ public enum PrestationType {
     NETTOYAGE_BASIC,
     NETTOYAGE_ADVANCED,
     NETTOYAGE_PREMIUM,
+
 }
