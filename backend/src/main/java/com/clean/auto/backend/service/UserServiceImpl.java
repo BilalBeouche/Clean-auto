@@ -6,18 +6,26 @@ import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.clean.auto.backend.entity.Role;
 import com.clean.auto.backend.entity.Users;
+import com.clean.auto.backend.enums.RoleType;
 import com.clean.auto.backend.exception.ResourceAlreadyExistsException;
+import com.clean.auto.backend.repository.RoleRepository;
 import com.clean.auto.backend.repository.UsersRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     private final UsersRepository usersRepository;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UsersRepository usersRepository, RoleRepository roleRepository,
+            PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
         this.usersRepository = usersRepository;
+        this.roleRepository = roleRepository;
+
     }
 
     @Override
@@ -26,8 +34,15 @@ public class UserServiceImpl implements UserService {
         if (existingUser.isPresent()) {
             throw new ResourceAlreadyExistsException("Adresse mail déjà existante : " + user.getEmail());
         }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEmail(user.getEmail().toLowerCase());// Hash the password
+        user.setEmail(user.getEmail().toLowerCase());
+
+        // rôle par defaut à l'inscription
+        Role roleUtilisateur = roleRepository.findByTypeRole(RoleType.UTILISATEUR)
+                .orElseThrow(() -> new RuntimeException("Rôle par défaut non trouvé"));
+        user.setRole(roleUtilisateur);
+
         return usersRepository.save(user);
     }
 
