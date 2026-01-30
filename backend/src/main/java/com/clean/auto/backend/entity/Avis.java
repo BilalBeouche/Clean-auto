@@ -1,12 +1,16 @@
 package com.clean.auto.backend.entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,7 +29,10 @@ public class Avis {
 
     private String commentaire;
 
-    private Date dateAvis;
+    private LocalDate dateAvis;
+
+    @OneToMany(mappedBy = "avis")
+    private List<Users> users = new ArrayList<>();
 
     public Avis() {
     }
@@ -34,7 +41,7 @@ public class Avis {
         this.reservation = reservation;
         this.note = note;
         this.commentaire = commentaire;
-        this.dateAvis = dateAvis;
+        this.dateAvis = dateAvis.toLocalDate();
     }
 
     public Long getIdAvis() {
@@ -69,11 +76,11 @@ public class Avis {
         this.commentaire = commentaire;
     }
 
-    public Date getDateAvis() {
+    public LocalDate getDateAvis() {
         return dateAvis;
     }
 
-    public void setGetDateAvis(Date dateAvis) {
+    public void setGetDateAvis(LocalDate dateAvis) {
         this.dateAvis = dateAvis;
     }
 

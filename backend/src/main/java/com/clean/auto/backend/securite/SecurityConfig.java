@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -54,21 +55,28 @@ public class SecurityConfig {
         // Autorisé les requette HTTP provenant de Postman ou d'autres clients et regles
         // de securite
         http
+                .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/users/**").permitAll()
                         .requestMatchers("/api/allUsers/**").permitAll()
-                        .requestMatchers("/api/prestations/**").permitAll()
-                        .requestMatchers("/api/allPrestations/**").permitAll()
-                        .requestMatchers("/api/avis/allAvis").permitAll()
-                        .requestMatchers("/api/tarifs/**").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/api/prestations/deletePresta/{id}/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/updateUser/{id}/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/deleteUser/{id}/**").authenticated()
+                        .requestMatchers("/api/getUserById/{id}/**").permitAll()
+
+                        .requestMatchers("/api/prestations/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/prestations/deletePresta/{id}/**").permitAll()
+
+                        .requestMatchers("/api/avis/allAvis").permitAll()
+                        .requestMatchers("/api/avis/createAvis").permitAll()
+                        .requestMatchers("/api/updateAvis/{id}").permitAll()
+
                         .requestMatchers("/api/vehicules/**").authenticated()
+
                         .requestMatchers("/api/reservation/**").authenticated()
-                        .requestMatchers("/api/avis/**").permitAll()
+
+                        .requestMatchers("/api/me/**").hasRole("UTILISATEUR")
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
