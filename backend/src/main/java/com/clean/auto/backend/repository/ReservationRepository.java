@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.clean.auto.backend.DTO.ReservationRequestDTO;
 import com.clean.auto.backend.entity.Reservation;
 import com.clean.auto.backend.entity.Users;
 
@@ -14,7 +15,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     java.util.Optional<Reservation> findById(long id);
 
-    Reservation save(Reservation reservation);
+    Reservation save(ReservationRequestDTO reservation);
 
     Reservation deleteById(long id);
 

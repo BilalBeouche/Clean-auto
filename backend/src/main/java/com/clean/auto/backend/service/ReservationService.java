@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.clean.auto.backend.DTO.ReservationRequestDTO;
 import com.clean.auto.backend.entity.Reservation;
 import com.clean.auto.backend.entity.Users;
 
@@ -14,7 +15,7 @@ public interface ReservationService {
 
     List<Reservation> getAllReservationByUser(Users user);
 
-    Reservation createReservation(Reservation reservation);
+    Reservation createReservation(ReservationRequestDTO reservation);
 
     Reservation updateReservation(Long id, Reservation reservation);
 
