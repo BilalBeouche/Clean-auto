@@ -5,18 +5,23 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.clean.auto.backend.entity.Avis;
+import com.clean.auto.backend.entity.Reservation;
 import com.clean.auto.backend.entity.Users;
 import com.clean.auto.backend.repository.AvisRepository;
+import com.clean.auto.backend.repository.ReservationRepository;
 
 @Service
 public class AvisServiceImpl implements AvisService {
 
     private final AvisRepository avisRepository;
+    private final ReservationRepository reservationRepository;
 
     private final UserService userService;
 
-    public AvisServiceImpl(AvisRepository avisRepository, UserService userService) {
+    public AvisServiceImpl(AvisRepository avisRepository, UserService userService,
+            ReservationRepository reservationRepository) {
         this.avisRepository = avisRepository;
+        this.reservationRepository = reservationRepository;
 
         this.userService = userService;
     }
@@ -26,8 +31,18 @@ public class AvisServiceImpl implements AvisService {
 
         Users user = userService.getCurrentUsers();
 
-        avis.setCommentaire(avis.getCommentaire());
+        Reservation reservation = reservationRepository
+                .findById(avis.getReservation().getIdReservation())
+                .orElseThrow(() -> new RuntimeException("Réservation introuvable"));
+
+        if (!reservation.getUser().getId().equals(user.getId())) {
+            throw new RuntimeException("Accès interdit à cette réservation");
+        }
+
+        avis.setUsers(user);
+        avis.setReservation(reservation);
         avis.setNote(avis.getNote());
+        avis.setCommentaire(avis.getCommentaire());
 
         return avisRepository.save(avis);
     }
@@ -41,8 +56,14 @@ public class AvisServiceImpl implements AvisService {
     @Override
     public Avis updateAvis(Long id, Avis avis) {
 
+        Users user = userService.getCurrentUsers();
+
         Avis existingaAvis = avisRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Avis non trouvé avec l'id" + id));
+
+        if (!avis.getUsers().getId().equals(user.getId())) {
+            throw new RuntimeException("Vous ne pouvez modifier que votre propre avis");
+        }
 
         existingaAvis.setCommentaire(avis.getCommentaire());
         existingaAvis.setNote(avis.getNote());

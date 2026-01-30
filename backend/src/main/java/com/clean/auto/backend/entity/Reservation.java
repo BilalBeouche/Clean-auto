@@ -2,6 +2,7 @@ package com.clean.auto.backend.entity;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,19 +19,21 @@ public class Reservation {
     private Long idReservation;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private Users user;
 
     @ManyToOne
-    @JoinColumn(name = "idVehicule", nullable = false, referencedColumnName = "idVehicule")
+    @JoinColumn(name = "id_vehicule", nullable = false, referencedColumnName = "idVehicule")
     private Vehicule vehicule;
 
     @ManyToOne
-    @JoinColumn(name = "idPrestation", nullable = false, referencedColumnName = "idPrestation")
+    @JoinColumn(name = "id_prestation", nullable = false, referencedColumnName = "idPrestation")
     private Prestation prestation;
 
+    @Column(name = "date_reservation")
     private Date dateReservation;
 
+    @Column(name = "prix_final", nullable = false)
     private double prixFinal;
 
     public Reservation() {

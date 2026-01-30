@@ -23,8 +23,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 @Builder
+@Setter
+@Getter
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
@@ -50,9 +54,9 @@ public class Users implements UserDetails {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @ManyToOne
-    @JoinColumn(name = "avis_id")
-    private Avis avis;
+    @OneToMany
+    @JoinColumn(name = "users")
+    private List<Avis> avis;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

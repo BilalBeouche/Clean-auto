@@ -3,8 +3,9 @@ import { provideRouter } from '@angular/router';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
+import { jwtInterceptor } from './clean_auto/auth/interceptor/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
-     provideRouter(routes),  provideHttpClient(withInterceptors([]))]
+     provideRouter(routes),  provideHttpClient(withInterceptors([jwtInterceptor]))]
 };

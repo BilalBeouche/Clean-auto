@@ -1,6 +1,5 @@
 package com.clean.auto.backend.Controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.management.RuntimeErrorException;
@@ -21,10 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clean.auto.backend.DTO.ReservationRequestDTO;
-import com.clean.auto.backend.entity.Prestation;
 import com.clean.auto.backend.entity.Reservation;
 import com.clean.auto.backend.entity.Users;
-import com.clean.auto.backend.entity.Vehicule;
 import com.clean.auto.backend.repository.PrestationRepository;
 import com.clean.auto.backend.repository.ReservationRepository;
 import com.clean.auto.backend.repository.UsersRepository;
@@ -67,44 +64,11 @@ public class ReservationController {
         return reservationService.getAllReservationByUser(user);
     }
 
-    @PostMapping("/createReserve")
+    @PostMapping("/createReservation")
     public ResponseEntity<Reservation> createReservation(@RequestBody ReservationRequestDTO request) {
-        System.out.println("coucou");
-        // Récupérer l'utilisateur connecté
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Users user = usersRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
 
-        // Récupérer le véhicule
-        Vehicule vehicule = vehiculeRepository.findById(request.getIdVehicule())
-                .orElseThrow(() -> new RuntimeException("Véhicule non trouvé"));
-
-        // Récupérer la prestation
-        Prestation prestation = prestationRepository.findById(request.getIdPrestation())
-                .orElseThrow(() -> new RuntimeException("Prestation non trouvée"));
-
-        // Construire la réservation
-        Reservation reservation = new Reservation();
-        reservation.setUser(user);
-        reservation.setVehicule(vehicule);
-        reservation.setPrestation(prestation);
-        reservation.setPrixFinal(request.getPrixFinal());
-
-        try {
-            // Parser la date et ignorer l'heure (java.sql.Date ne stocke que la date sans
-            // l'heure)
-            LocalDate localDate = LocalDate.parse(request.getDateReservation().substring(0, 10)); // "2025-08-08"
-
-            // Convertir en java.sql.Date
-            java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
-
-            reservation.setDateReservation(sqlDate);
-
-        } catch (Exception e) {
-            throw new RuntimeException("Format de date invalide. Attendu : yyyy-MM-dd ou yyyy-MM-dd'T'HH:mm:ss");
-        }
-
-        Reservation savedReservation = reservationService.createReservation(reservation);
+        Reservation savedReservation = reservationService.createReservation(request);
+        System.out.println("Reservation reçue = " + request);
 
         return new ResponseEntity<>(savedReservation, HttpStatus.CREATED);
     }
