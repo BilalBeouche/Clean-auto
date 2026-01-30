@@ -1,7 +1,7 @@
 export interface Avis {
     
-    idAvis: number;
-    note: number;
+    idAvis?: number;
+    note: string;
     commentaire: string;
     dateAvis: Date;
     

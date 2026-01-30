@@ -94,3 +94,12 @@
     top: 20px;
   }
 
+.sucess {
+  color: green;
+  font-weight: bold;
+}
+
+.err{
+  color: red;
+  font-weight: bold;
+}

@@ -109,7 +109,7 @@ public class ReservationController {
         return new ResponseEntity<>(savedReservation, HttpStatus.CREATED);
     }
 
-    @PutMapping("/reservation/{id}")
+    @PutMapping("/updateReservation/{id}")
     public ResponseEntity<Reservation> updateReservation(@PathVariable Long id, @RequestBody Reservation reservation) {
 
         System.out.println("coucou Update");

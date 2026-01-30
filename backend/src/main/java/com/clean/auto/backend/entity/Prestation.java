@@ -21,7 +21,7 @@ public class Prestation {
     private Long idPrestation;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type_prestation", nullable = false)
+    @Column(name = "prestation", nullable = false)
     private PrestationType namePrestation;
 
     @Column(name = "description", nullable = true)

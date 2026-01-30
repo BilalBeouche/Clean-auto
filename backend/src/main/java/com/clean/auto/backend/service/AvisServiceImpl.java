@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.clean.auto.backend.entity.Avis;
+import com.clean.auto.backend.entity.Users;
 import com.clean.auto.backend.repository.AvisRepository;
 
 @Service
@@ -12,14 +13,22 @@ public class AvisServiceImpl implements AvisService {
 
     private final AvisRepository avisRepository;
 
-    public AvisServiceImpl(AvisRepository avisRepository) {
+    private final UserService userService;
+
+    public AvisServiceImpl(AvisRepository avisRepository, UserService userService) {
         this.avisRepository = avisRepository;
 
+        this.userService = userService;
     }
 
     @Override
-    public Avis saveAvis(Avis avis) {
-        // TODO Auto-generated method stub
+    public Avis createAvis(Avis avis) {
+
+        Users user = userService.getCurrentUsers();
+
+        avis.setCommentaire(avis.getCommentaire());
+        avis.setNote(avis.getNote());
+
         return avisRepository.save(avis);
     }
 

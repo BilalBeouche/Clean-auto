@@ -5,7 +5,7 @@
 
 <div class="avis-container">
 
-    @for (avis of avis; track $index) {
+    @for (avis of afficherAvis; track $index) {
     <div class="cardAvis">
       <img src="https://randomuser.me/api/portraits/men/32.jpg"  alt="{{avis.note}}">
       <div class="etoile">⭐⭐⭐⭐</div> 
@@ -15,5 +15,56 @@
     </div>
   }
 
+<!-- 
+
+  @if(authService.isLoggedIn()){
+
+    <p>Ajouter un avis</p>
+  
+    <form [formGroup]="avisForm" (ngSubmit)="onSubmit()">
+      
+      <textarea
+    formControlName="commentaire"
+    maxlength="500">
+    </textarea>
+      <input type="number" placeholder="Votre note (0-10)" min="0" max="10" formControlName="note" placeholder="laissez votre avis...">
+      <input type="date" >
+      <button type="submit" >Envoyer</button>
+    </form>
+  
+  } -->
+
+  @if(authService.isLoggedIn()) {
+
+    <form [formGroup]="avisForm" (ngSubmit)="onSubmit()">
+   
+     <textarea
+       formControlName="commentaire"
+       placeholder="Laissez votre avis..."
+     ></textarea>
+   
+     <input
+       type="number"
+       formControlName="note"
+       min="1"
+       max="5"
+     />
+
+     <input type="datetime-local" formControlName="dateAvis">
+   
+     <button type="submit" [disabled]="avisForm.invalid">
+       Envoyer
+     </button>
+
+     <p class="succes">{{succes}}</p>
+     <p class="err">{{err}}</p>
+   
+   </form>
+  }
+  
 </div>
+
+
+
+
 

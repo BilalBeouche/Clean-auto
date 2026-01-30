@@ -9,7 +9,7 @@ import com.clean.auto.backend.entity.Avis;
 @Service
 public interface AvisService {
 
-    Avis saveAvis(Avis avis);
+    Avis createAvis(Avis avis);
 
     List<Avis> getAllAvis();
 

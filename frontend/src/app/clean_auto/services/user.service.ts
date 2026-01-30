@@ -18,6 +18,10 @@ export class UserService {
     return this.http.post<Users>(`${BASE_URL}/users`, userData);
   } 
 
+  getUserById(userId : number, users: Users){
+    return this.http.get(`${BASE_URL}/getUserById/${userId}`);
+  }
+
   getAllUsers() {
     return this.http.get<Users[]>(`${BASE_URL}/allUsers`);
   }

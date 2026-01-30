@@ -3,6 +3,8 @@ package com.clean.auto.backend.Controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.clean.auto.backend.DTO.UsersResponse;
 import com.clean.auto.backend.entity.Users;
 import com.clean.auto.backend.service.UserService;
 
@@ -41,7 +44,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getUserById/{id}")
     public ResponseEntity<Users> getUsersById(@PathVariable Long id) {
         Users user = userService.getUserById(id);
         if (user != null) {
@@ -76,6 +79,22 @@ public class UserController {
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build(); // 404 Not Found si l'utilisateur n'existe pas
         }
+    }
+
+    @GetMapping("/me")
+    @PreAuthorize("hasRole('isAuthenticated()')")
+    public UsersResponse getMe(Authentication authentication) {
+
+        // String email = authentication.getName(); // ✅ vient du JWT
+
+        Users user = userService.getCurrentUsers();
+
+        return new UsersResponse(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getPhoneNumber());
     }
 
 }
