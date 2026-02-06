@@ -3,6 +3,7 @@ import { LoginComponent } from './clean_auto/auth/login/login.component';
 import { AvisComponent } from './clean_auto/components/pages/avis/avis.component';
 import { InscriptionComponent } from './clean_auto/components/pages/inscription/inscription.component';
 import { PrestationsComponent } from './clean_auto/components/pages/prestations/prestations.component';
+import { ProfilComponent } from './clean_auto/components/pages/profil/profil.component';
 import { ReservationComponent } from './clean_auto/components/pages/reservation/reservation.component';
 import { HomeComponent } from './header/home/home.component';
 
@@ -15,6 +16,7 @@ export const routes: Routes = [  // ✅ mot-clé "export" ajouté ici
   {path: "reservations", component : ReservationComponent},
   {path: "avis", component : AvisComponent},
   {path:"inscription", component: InscriptionComponent},
+  {path:"profil", component : ProfilComponent},
   {path:"login", component : LoginComponent}
  
 ];

@@ -1,0 +1,80 @@
+.container {
+  padding: 250px; 
+  display: flex;
+  justify-content: center;
+  height: auto;
+  opacity: 0.90;
+  
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input{
+
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+
+.card {
+    border: 10px ridge rgb(4, 79, 106);
+    background-color: rgb(237, 237, 232);
+    padding: 0.5rem;
+    width: 40%;
+    
+}
+
+label {    
+    padding: 5px;
+    font-weight: bold;
+    background-color: rgb(237, 237, 232);
+    padding: 0.5rem;
+    font-style: italic
+
+}
+
+h3 {
+    font: small-caps bold 1.2rem sans-serif;
+    text-align: center;
+}
+
+.buttonValider{
+    padding: 14px 28px;
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+     width: auto;    
+      align-self: center;
+
+    background:linear-gradient( 90deg,#1a73e8,#4facfe) ;
+
+    box-shadow: 0 8px 20px rgba(0,0 , 0, 0.25);
+
+}
+
+input {
+    border-radius: 30px;
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+   
+   
+}
+
+.buttonValider:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* effet clic*/
+.buttonValider:active {
+  transform: scale(0.97);
+}
+

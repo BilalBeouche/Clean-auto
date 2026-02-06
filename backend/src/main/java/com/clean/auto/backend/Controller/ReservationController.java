@@ -7,8 +7,6 @@ import javax.management.RuntimeErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.clean.auto.backend.DTO.ReservationRequestDTO;
 import com.clean.auto.backend.entity.Reservation;
-import com.clean.auto.backend.entity.Users;
 import com.clean.auto.backend.repository.PrestationRepository;
 import com.clean.auto.backend.repository.ReservationRepository;
 import com.clean.auto.backend.repository.UsersRepository;
@@ -56,12 +53,13 @@ public class ReservationController {
 
     @GetMapping("/allReservation")
     public List<Reservation> getAllReservations() {
+        return reservationService.getAllReservation();
 
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Users user = usersRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("utilisateur non trouvé"));
+    }
 
-        return reservationService.getAllReservationByUser(user);
+    @GetMapping("/allReservationByUser")
+    public List<Reservation> getAllReservationByUser() {
+        return reservationService.getAllReservationByUser();
     }
 
     @PostMapping("/createReservation")

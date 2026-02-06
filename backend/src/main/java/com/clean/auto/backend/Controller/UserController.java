@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.clean.auto.backend.DTO.UpdateUserDto;
 import com.clean.auto.backend.DTO.UsersResponse;
 import com.clean.auto.backend.entity.Users;
 import com.clean.auto.backend.service.UserService;
@@ -25,13 +25,10 @@ import com.clean.auto.backend.service.UserService;
 @RequestMapping("/api")
 public class UserController {
 
-    private final PasswordEncoder passwordEncoder;
-
     private final UserService userService;
 
-    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/users")
@@ -56,11 +53,6 @@ public class UserController {
 
     @PutMapping("/updateUser/{id}")
     public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody Users user) {
-        // Vérifie si un mot de passe a été fournie
-        System.out.println("error");
-        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-            System.out.println("modication effectué ");
-        }
 
         Users updatedUser = userService.updateUser(id, user);
 
@@ -86,7 +78,6 @@ public class UserController {
     public UsersResponse getMe(Authentication authentication) {
 
         // String email = authentication.getName(); // ✅ vient du JWT
-
         Users user = userService.getCurrentUsers();
 
         return new UsersResponse(
@@ -95,6 +86,18 @@ public class UserController {
                 user.getLastName(),
                 user.getEmail(),
                 user.getPhoneNumber());
+    }
+
+    @PutMapping("/updateMe")
+    public ResponseEntity<Users> updateCurrentUser(@RequestBody UpdateUserDto dto) {
+
+        Users updateUser = userService.updateCurrentUser(dto);
+        if (updateUser != null) {
+            return ResponseEntity.ok(updateUser);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+        // return ResponseEntity.ok(updateUser);
     }
 
 }

@@ -30,17 +30,19 @@ public class AvisServiceImpl implements AvisService {
     public Avis createAvis(Avis avis) {
 
         Users user = userService.getCurrentUsers();
+        avis.setUsers(user);
 
-        Reservation reservation = reservationRepository
-                .findById(avis.getReservation().getIdReservation())
-                .orElseThrow(() -> new RuntimeException("Réservation introuvable"));
+        if (avis.getReservation() != null && avis.getReservation().getIdReservation() != null) {
 
-        if (!reservation.getUser().getId().equals(user.getId())) {
-            throw new RuntimeException("Accès interdit à cette réservation");
+            Reservation reservation = reservationRepository
+                    .findById(avis.getReservation().getIdReservation())
+                    .orElseThrow(() -> new RuntimeException("Réservation introuvable"));
+
+        } else {
+
+            avis.setReservation(null);
         }
 
-        avis.setUsers(user);
-        avis.setReservation(reservation);
         avis.setNote(avis.getNote());
         avis.setCommentaire(avis.getCommentaire());
 

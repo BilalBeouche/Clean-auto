@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 import com.clean.auto.backend.DTO.ReservationRequestDTO;
 import com.clean.auto.backend.entity.Prestation;
 import com.clean.auto.backend.entity.Reservation;
+import com.clean.auto.backend.entity.Role;
 import com.clean.auto.backend.entity.Users;
 import com.clean.auto.backend.entity.Vehicule;
+import com.clean.auto.backend.enums.RoleType;
 import com.clean.auto.backend.repository.PrestationRepository;
 import com.clean.auto.backend.repository.ReservationRepository;
+import com.clean.auto.backend.repository.RoleRepository;
 import com.clean.auto.backend.repository.VehiculeRepository;
 
 @Service
@@ -22,21 +25,35 @@ public class ReservationServiceImpl implements ReservationService {
 
     PrestationRepository prestationRepository;
     VehiculeRepository vehiculeRepository;
+    RoleRepository roleRepository;
 
     private final UserService userService;
 
     public ReservationServiceImpl(ReservationRepository reservationRepository, UserService userService,
-            PrestationRepository prestationRepository, VehiculeRepository vehiculeRepository) {
+            PrestationRepository prestationRepository, VehiculeRepository vehiculeRepository,
+            RoleRepository roleRepository) {
         this.reservationRepository = reservationRepository;
         this.prestationRepository = prestationRepository;
         this.vehiculeRepository = vehiculeRepository;
+        this.roleRepository = roleRepository;
 
         this.userService = userService;
     }
 
     @Override
     public List<Reservation> getAllReservation() {
-        return reservationRepository.findAll();
+
+        Users user = userService.getCurrentUsers();
+
+        Role role = roleRepository.findByTypeRole(RoleType.ADMIN)
+                .orElseThrow(() -> new RuntimeException("Rôle par défaut non trouvé"));
+
+        if (user.getRole() == role) {
+            return reservationRepository.findAll();
+        } else {
+            throw new IllegalArgumentException("l'utilisateur doit etre ADMIN");
+        }
+
     }
 
     @Override
@@ -71,8 +88,12 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<Reservation> getAllReservationByUser(Users user) {
+    public List<Reservation> getAllReservationByUser() {
+
+        Users user = userService.getCurrentUsers();
+
         return reservationRepository.findByUser(user);
+
     }
 
     @Override
@@ -89,10 +110,10 @@ public class ReservationServiceImpl implements ReservationService {
 
     public void deleteReservation(Long id) {
         if (!reservationRepository.existsById(id)) {
-            throw new RuntimeException("Utilisateur introuvable");
+            throw new RuntimeException("Réservation introuvable");
         } else {
             reservationRepository.deleteById(id);
-            System.out.println("utilisateur supprimé");
+            System.out.println("Reservation supprimé");
         }
     }
 }

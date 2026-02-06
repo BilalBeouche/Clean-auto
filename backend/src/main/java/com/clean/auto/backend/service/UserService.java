@@ -2,6 +2,7 @@ package com.clean.auto.backend.service;
 
 import java.util.List;
 
+import com.clean.auto.backend.DTO.UpdateUserDto;
 import com.clean.auto.backend.entity.Users;
 
 public interface UserService {
@@ -13,6 +14,8 @@ public interface UserService {
     Users getUserById(Long id);
 
     Users updateUser(Long id, Users user);
+
+    Users updateCurrentUser(UpdateUserDto userDto);
 
     void deleteUser(Long id);
 
