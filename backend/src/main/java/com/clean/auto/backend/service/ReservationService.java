@@ -6,14 +6,13 @@ import org.springframework.stereotype.Service;
 
 import com.clean.auto.backend.DTO.ReservationRequestDTO;
 import com.clean.auto.backend.entity.Reservation;
-import com.clean.auto.backend.entity.Users;
 
 @Service
 public interface ReservationService {
 
     List<Reservation> getAllReservation();
 
-    List<Reservation> getAllReservationByUser(Users user);
+    List<Reservation> getAllReservationByUser();
 
     Reservation createReservation(ReservationRequestDTO reservation);
 

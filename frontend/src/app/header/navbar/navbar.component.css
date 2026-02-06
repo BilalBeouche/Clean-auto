@@ -1,5 +1,5 @@
 .navbar {
-    position: absolute;
+    position: fixed;
     padding: 30px;
     width: 100%;
     display: flex;
@@ -9,7 +9,11 @@
     border-radius: 50px 0 50px 0px;
     /* box-shadow: 10px 5px 5px rgb(30, 30, 27); */
 
+    top: 0;              /* 🔑 */
+  left: 0;    
 }
+
+
 
 .navbar .logo {
     font-size: 2em;

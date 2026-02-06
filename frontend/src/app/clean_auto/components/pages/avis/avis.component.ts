@@ -35,7 +35,7 @@ ngOnInit(): void {
 
   this.avisForm = this.fb.group({
     commentaire: ['', [Validators.required, Validators.minLength(10)]],
-    note: [5, [Validators.required, Validators.min(1), Validators.max(5)]],
+    note: [5, [Validators.required, Validators.min(1), Validators.max(10)]],
     dateAvis: [new Date().toISOString()] // ✅ fonction appelée
   });
 
@@ -67,7 +67,7 @@ onSubmit(): void {
   this.avisService.createAvis(this.avisForm.value).subscribe({
     next: (avis) => {
       console.log('Avis créé', avis);
-      this.router.navigate(['/home']);
+      this.avisService.getAllAvis();
       this.avisForm.reset({ note: 5 });
       this.succes = "avis créer"
     },

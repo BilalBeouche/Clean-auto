@@ -33,4 +33,17 @@ export class UserService {
   updateUser(userId: number, userData: Users) {
     return this.http.put<Users>(`${BASE_URL}/updateUser/${userId}`, userData);
   }
+
+  
+      updateUserMe(userData: Users){
+      console.log(userData)
+      return this.http.put<Users>(`${BASE_URL}/updateMe`,userData)
+    }
+    
+  
+    getUserMe(){
+      return this.http.get<Users>(`${BASE_URL}/me`)
+    }
+
+
 }

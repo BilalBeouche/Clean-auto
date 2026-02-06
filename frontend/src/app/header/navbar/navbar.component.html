@@ -1,5 +1,5 @@
 @if(!authService.isLoggedIn()){
-
+    
     <nav class="navbar">
         <a href="#" class="logo" >CLEAN AUTO</a>
         <div class="nav-link">
@@ -7,14 +7,15 @@
                 <li class="active"><button routerLink="/home">Home</button></li>
                 <li><button routerLink="/prestations">Prestation</button></li>
                 <li><button routerLink="/contact">Contact</button></li>
+                <li><button routerLink="/login">Connection</button></li>
                 <li><button routerLink="/inscription">Inscription</button></li>
-    
+                
             </ul>
         </div>
     </nav>
 }@else {
-
-      <nav class="navbar">
+    
+    <nav class="navbar">
         <a href="#" class="logo" >CLEAN AUTO</a>
         <div class="nav-link">
             <ul>
@@ -23,9 +24,12 @@
                 <li><button routerLink="/reservations">Réservation</button></li>
                 <li><button routerLink="/avis">Avis</button></li>
                 <li><button routerLink="/contact">Contact</button></li>
-                <li><button routerLink="/profile">Profile</button></li>
+                <li><button routerLink="/profil">Profile</button></li>
                 <li><button class="logout" (click)="logout()">Deconnexion</button></li>
-                <span class="username">Bienvenue, {{ authService.getUserName() }}</span>
+                @if(user){
+
+                    <span class="username">Bienvenue, {{ user.lastName}}</span>
+                }
     
             </ul>
         </div>

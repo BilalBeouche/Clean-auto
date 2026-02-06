@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.clean.auto.backend.DTO.UpdateUserDto;
 import com.clean.auto.backend.entity.Role;
 import com.clean.auto.backend.entity.Users;
 import com.clean.auto.backend.enums.RoleType;
@@ -60,6 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users updateUser(Long id, Users user) {
+
         Users existingUser = usersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec l'id : " + id));
 
@@ -74,6 +76,17 @@ public class UserServiceImpl implements UserService {
         System.out.println("Mot de passe encodé en base : " + user.getPassword());
 
         return usersRepository.save(existingUser);
+    }
+
+    @Override
+    public Users updateCurrentUser(UpdateUserDto userDto) {
+        Users user = getCurrentUsers();
+
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setPhoneNumber(userDto.getPhoneNumber());
+        return usersRepository.save(user);
     }
 
     public void deleteUser(Long id) {
@@ -91,4 +104,5 @@ public class UserServiceImpl implements UserService {
 
         return usersRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     }
+
 }
