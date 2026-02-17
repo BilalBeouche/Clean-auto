@@ -26,6 +26,10 @@ authService = inject(AuthService);
 router = inject(Router);
 private fb = inject(FormBuilder);
 
+isHomePage(): boolean {
+  return this.router.url === '/home';
+}
+
 avisForm!: FormGroup;
 
 succes = "";

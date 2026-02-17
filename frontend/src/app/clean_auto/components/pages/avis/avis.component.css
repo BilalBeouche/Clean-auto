@@ -1,76 +1,155 @@
+/* ===============================
+   GLOBAL
+================================ */
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  padding: 50px;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
-    padding: 50px;
-  }
+/* ===============================
+   TITRE
+================================ */
+h2 {
+  padding-top: 150px;
+  color: white;
+  text-align: center;
+  margin-bottom: 50px;
+}
 
-  h2 {
-    padding-top: 150px;
-    color: white;
-    text-align: center;
-    margin-bottom: 50px;
-  }
+/* ===============================
+   SECTION AVIS (GLOBAL)
+================================ */
+.avis-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .avis-container {
-    display: flex;
-    justify-content: center;
-    /* padding-top: 130px; */
-    gap: 40px;
-    flex-wrap: wrap;
-  }
+/* ===============================
+   CARTES AVIS
+================================ */
+.avis-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
 
-  .cardAvis {
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    position: relative;
-    width: 300px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
+.cardAvis {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  position: relative;
+  width: 300px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-  .cardAvis img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    position: absolute;
-    top: -35px;
-    left: 30px;
-    border: 3px solid #fff;
-  }
+/* Avatar */
+.cardAvis img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  top: -35px;
+  left: 30px;
+  border: 3px solid #fff;
+}
 
-  .cardAvis p {
-    margin-top: 50px;
-    font-size: 14px;
-    color: #333;
-  }
+/* Étoiles */
+.etoiles {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
 
-  .cardAvis .author {
-    margin-top: 10px;
-    font-weight: bold;
-    text-align: right;
-  }
+/* Texte avis */
+.cardAvis p {
+  margin-top: 50px;
+  font-size: 14px;
+  color: #333;
+}
 
-  .note{
-    position: absolute;
+/* Note */
+.note {
+  position: absolute;
   bottom: 20px;
   right: 20px;
-    font-weight: bold;
-  }
-
-  .etoiles {
-    
-    position: absolute;
-    left: 20px;
-    top: 20px;
-  }
-
-.success {
-  color: green;
   font-weight: bold;
 }
 
-.err{
+/* ===============================
+   FORMULAIRE AVIS
+================================ */
+.cardAvis1 {
+  margin-top: 60px;
+  width: 40%;
+  min-width: 320px;
+  padding: 20px;
+  border: 10px ridge rgb(4, 79, 106);
+  background-color: rgb(237, 237, 232);
+  opacity: 0.95;
+}
+
+/* Labels */
+.cardAvis1 label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* Inputs & textarea */
+.cardAvis1 textarea {
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.cardAvis1 input {
+  width: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+/* Bouton */
+.cardAvis1 button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: rgb(4, 79, 106);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cardAvis1 button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+/* ===============================
+   MESSAGES
+================================ */
+.success {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.err {
   color: red;
   font-weight: bold;
+  margin-top: 10px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .cardAvis1 {
+    width: 90%;
+  }
 }

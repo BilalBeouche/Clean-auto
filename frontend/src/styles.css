@@ -9,9 +9,10 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh; /* Hauteur de l'écran */
-    background-image: url('assets/images/interieur.png');
+    /* background-image: url('assets/images/interieur.png'); */
     background-size: cover;      /* L'image couvre tout */
     background-repeat: no-repeat; /* Pas de répétition */
     background-position: center;  /* Centrée */
     font-family: Arial, sans-serif; 
+    background-color: rgb(144, 141, 141);
 }

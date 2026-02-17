@@ -4,6 +4,7 @@ h1 {
     padding-top: 150px;
 }
 .reservation{
-    min-width: 320px;
+    display: flex;
+    margin: auto;
     height: 700px;
 }

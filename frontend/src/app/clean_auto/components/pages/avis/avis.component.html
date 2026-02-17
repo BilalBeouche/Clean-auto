@@ -1,52 +1,37 @@
-
-
 <h2>Ce que disent nos clients</h2>
 
+<div class="avis-section">
 
-<div class="avis-container">
-
+  <div class="avis-container">
     @for (avis of afficherAvis; track $index) {
-    <div class="cardAvis">
-      <img src="https://randomuser.me/api/portraits/men/32.jpg"  alt="{{avis.note}}">
-      <div class="etoile">⭐⭐⭐⭐</div> 
-      <p>{{avis.commentaire}}</p>
-      <p>{{avis.dateAvis}}</p>
-      <div class="note"><p>{{avis.note}} /10</p></div>
+      <div class="cardAvis">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg">
+        <div class="etoiles">⭐⭐⭐⭐</div>
+        <p>{{avis.commentaire}}</p>
+        <p>{{avis.dateAvis}}</p>
+        <div class="note">{{avis.note}} /10</div>
+      </div>
+    }
+  </div>
+
+  @if(authService.isLoggedIn() && !isHomePage()) {
+    <div class="cardAvis1">
+      <form [formGroup]="avisForm" (ngSubmit)="onSubmit()">
+        <label>Avis :</label>
+        <textarea formControlName="commentaire"></textarea>
+
+        <label>Note :</label>
+        <input type="number" formControlName="note" min="1" max="10">
+
+        <label>Date de publication :</label>
+        <input type="datetime-local" formControlName="dateAvis">
+
+        <button type="submit" [disabled]="avisForm.invalid">Envoyer</button>
+
+        <p class="success">{{succes}}</p>
+        <p class="err">{{err}}</p>
+      </form>
     </div>
   }
 
-
-  @if(authService.isLoggedIn()) {
-
-    <form [formGroup]="avisForm" (ngSubmit)="onSubmit()">
-   
-     <textarea
-       formControlName="commentaire"
-       placeholder="Laissez votre avis..."
-     ></textarea>
-   
-     <input
-       type="number"
-       formControlName="note"
-       min="1"
-       max="10"
-     />
-
-     <input type="datetime-local" formControlName="dateAvis">
-   
-     <button type="submit" [disabled]="avisForm.invalid">
-       Envoyer
-     </button>
-
-     <p class="succes">{{succes}}</p>
-     <p class="err">{{err}}</p>
-   
-   </form>
-  }
-  
 </div>
-
-
-
-
-
