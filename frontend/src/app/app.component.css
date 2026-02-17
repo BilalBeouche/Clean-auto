@@ -1,11 +1,24 @@
-* {
-    background: #bab4b4;
-    font-family: Arial, sans-serif;
+body{
+    height: 100vh;
+    width: 100vw;
+    background-image: url('/frontend/src/assets/images/interieur.png');
+    background-size: cover ;
 }
 
-h1 {
-    text-align: center;
-    color: white;
-    padding-top: 150px;
-    
+/* ===== NAVBAR RESPONSIVE ===== */
+@media screen and (max-width: 900px) {
+
+  .navbar2 {
+    padding: 30px;
+  }
+
+  /* on cache les liens */
+  .navbar2 .navlinks {
+    display: none;
+  }
+
+  /* on affiche le burger */
+  .navbar2 .menu-humburger {
+    display: block;
+  }
 }

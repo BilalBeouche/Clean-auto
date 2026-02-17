@@ -1,10 +1,12 @@
 .container {
-  padding: 250px; 
-  display: flex;
-  justify-content: center;
-  height: auto;
-  opacity: 0.90;
-  
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 90%;
+    border-radius: 20px;
+
+
 }
 
 form {
@@ -13,7 +15,7 @@ form {
     gap: 12px;
 }
 
-input{
+input {
 
     width: 100%;
     padding: 6px;
@@ -22,20 +24,21 @@ input{
 
 
 .card {
+    margin-top: 150px;
+    margin-bottom: 150px;
     border: 10px ridge rgb(4, 79, 106);
     background-color: rgb(237, 237, 232);
     padding: 0.5rem;
     width: 40%;
-    
+
 }
 
-label {    
+label {
     padding: 5px;
     font-weight: bold;
     background-color: rgb(237, 237, 232);
     padding: 0.5rem;
     font-style: italic
-
 }
 
 h3 {
@@ -43,19 +46,19 @@ h3 {
     text-align: center;
 }
 
-.buttonValider{
+.buttonValider {
     padding: 14px 28px;
     font-size: 18px;
     color: white;
     border: none;
     border-radius: 999px;
     cursor: pointer;
-     width: auto;    
-      align-self: center;
+    width: auto;
+    align-self: center;
 
-    background:linear-gradient( 90deg,#1a73e8,#4facfe) ;
+    background: linear-gradient(90deg, #1a73e8, #4facfe);
 
-    box-shadow: 0 8px 20px rgba(0,0 , 0, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 
 }
 
@@ -64,17 +67,16 @@ input {
     border: none;
     padding: 15px;
     font-weight: bold;
-   
-   
+
+
 }
 
 .buttonValider:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
 
 /* effet clic*/
 .buttonValider:active {
-  transform: scale(0.97);
+    transform: scale(0.97);
 }
-

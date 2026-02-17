@@ -8,26 +8,6 @@
     margin: 30px;
 }
 
-h1 {
-    text-align: center;
-    color: white;
-    
-    padding-top:120px;     
-}
-/* .card {
-    margin-top: 10px;
-    width: auto;
-    height: auto;
-    background: #fffdfd;
-    
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-bottom: 20px;
-  
-
-    
-} */
 
 .card {
     height: 300px;

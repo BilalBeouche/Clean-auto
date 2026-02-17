@@ -1,34 +1,12 @@
-/* ===============================
-   GLOBAL
-================================ */
-body {
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
-  padding: 50px;
-}
 
-/* ===============================
-   TITRE
-================================ */
-h2 {
-  padding-top: 150px;
-  color: white;
-  text-align: center;
-  margin-bottom: 50px;
-}
 
-/* ===============================
-   SECTION AVIS (GLOBAL)
-================================ */
 .avis-section {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* ===============================
-   CARTES AVIS
-================================ */
+
 .avis-container {
   display: flex;
   justify-content: center;
@@ -46,7 +24,6 @@ h2 {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Avatar */
 .cardAvis img {
   width: 70px;
   height: 70px;
@@ -57,21 +34,20 @@ h2 {
   border: 3px solid #fff;
 }
 
-/* Étoiles */
+
 .etoiles {
   position: absolute;
   top: 20px;
   right: 20px;
 }
 
-/* Texte avis */
 .cardAvis p {
   margin-top: 50px;
   font-size: 14px;
   color: #333;
 }
 
-/* Note */
+
 .note {
   position: absolute;
   bottom: 20px;
@@ -79,9 +55,7 @@ h2 {
   font-weight: bold;
 }
 
-/* ===============================
-   FORMULAIRE AVIS
-================================ */
+
 .cardAvis1 {
   margin-top: 60px;
   width: 40%;
@@ -92,14 +66,12 @@ h2 {
   opacity: 0.95;
 }
 
-/* Labels */
 .cardAvis1 label {
   display: block;
   margin-top: 15px;
   font-weight: bold;
 }
 
-/* Inputs & textarea */
 .cardAvis1 textarea {
   width: 100%;
   height: 100px;

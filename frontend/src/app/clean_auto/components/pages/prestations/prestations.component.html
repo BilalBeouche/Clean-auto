@@ -9,10 +9,12 @@
             <h4>{{prestation.description}}</h4>
             
             <p>Prix : 80 €</p>
+            @if(!authService.isLoggedIn()){
             <button routerLink="/login" >Pour reserver connecté vous</button>
             
-            @if(authService.isLoggedIn()){
-                <button routerLink="/reservations">Réserver</button>   
+        }@else {
+
+            <button routerLink="/reservations">Réserver</button>   
         }
     </div>
     

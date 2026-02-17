@@ -11,4 +11,6 @@ import { NavbarComponent } from "./header/navbar/navbar.component";
 })
 export class AppComponent {
   title = 'nettoyage-auto';
+
+  searchText = "";
 }
