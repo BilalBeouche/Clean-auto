@@ -1,0 +1,7 @@
+p { 
+    border: 1px solid black;
+    width: 100%;
+    position: absolute;
+    background-color: bisque;
+    margin: 20px;
+}

@@ -1,19 +1,22 @@
 
 <H1>Préstations</H1>
-<div class="container">
+<div class="cards">
 
     @for(prestation of prestations; track prestation.id ){
      
         <div class="card">
             <h2>{{prestation.namePrestation}}</h2>
             <h4>{{prestation.description}}</h4>
-   
-        <p>Prix : 80 €</p>
+            
+            <p>Prix : 80 €</p>
+            @if(!authService.isLoggedIn()){
+            <button routerLink="/login" >Pour reserver connecté vous</button>
+            
+        }@else {
 
-        @if(authService.isLoggedIn()){
-            <button routerLink="/reservations">Réserver</button>
+            <button routerLink="/reservations">Réserver</button>   
         }
     </div>
-  
+    
 }
 </div>

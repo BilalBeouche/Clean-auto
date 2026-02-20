@@ -1,4 +1,4 @@
-@if(!authService.isLoggedIn()){
+<!-- @if(!authService.isLoggedIn()){
     
     <nav class="navbar">
         <a href="#" class="logo" >CLEAN AUTO</a>
@@ -35,4 +35,58 @@
         </div>
     </nav>
 
+} -->
+
+
+@if(!this.authService.isLoggedIn()){
+
+    <nav class="navbar2">
+        <a href="" class="logo">Clean Auto</a>
+        <div class="navlinks">
+            <ul>
+              <li class="active2" routerLink="/home" ><a >Home</a></li>
+              <li routerLink="/prestations"><a  >Prestation</a></li>
+              <li routerLink="/login"><a >Connection</a></li>
+              <li><a routerLink="/inscription" >Inscription</a></li>
+              <li><a routerLink="/Contact" >Contact</a></li>
+              <!-- <input type="search" name=""  [ngModel]="search()" (ngModelChange)="updateSearch($event)"  placeholder="recherche..." id=""> -->
+              <!-- <button (click)="clickedSearch()" >Search</button> -->
+              <!-- <p>count : {{click}}</p> -->
+            </ul>
+    
+        </div>
+        <img src="assets/images/iconHumberguer-removebg-preview.png" alt="menu hamburger" class="menu-humburger">
+    </nav>
+}@else {
+    <nav class="navbar2">
+        <a  class="logo">Clean Auto</a>
+        <div class="navlinks">
+            <ul>
+              <li class="active2" routerLink="/home" ><a >Home</a></li>
+              <li routerLink="/prestations"><a  >Prestation</a></li>
+              <li routerLink="/reservations"><a  >Réservation</a></li>
+              <li><a routerLink="/avis" >Avis</a></li>
+              <li><a routerLink="/contact" >Contact</a></li>
+              <li><a routerLink="/profil" >Profil</a></li>
+              <li class="/logout"><a (click)="logout()" routerLink="/logout" >Deconnection</a></li>
+              <!-- <input type="search" name=""  [ngModel]="search()" (ngModelChange)="updateSearch($event)"  placeholder="recherche..." id=""> -->
+              <!-- <button (click)="clickedSearch()" >Search</button> -->
+             <!-- <p>count : {{click}}</p> -->
+            </ul>
+    
+        </div>
+        <img src="assets/images/iconHumberguer-removebg-preview.png" alt="menu hamburger" class="menu-humburger">
+    </nav>
+
 }
+
+
+<script>
+    const menuHumberger = document.querySelector(".menu-humburger");
+    const navlinks = document.querySelector(".nav-link")
+    menuHumberger.addEventListener('click', () =>{
+         navlinks.classList.toggle('mobile-menu')
+    })
+</script>
+
+

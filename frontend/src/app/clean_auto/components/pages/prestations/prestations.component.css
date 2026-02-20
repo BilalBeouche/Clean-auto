@@ -1,35 +1,30 @@
-.container {
+
+.cards{
     display: flex;
+    margin: auto;
+    flex-wrap:nowrap;
     gap: 20px;
+    width: auto;
+    margin: 30px;
 }
 
-h1 {
-    text-align: center;
-    color: white;
-    
-    padding-top:120px;     
-}
+
 .card {
-    margin-top: 10px;
-    width: auto;
-    height: auto;
+    height: 300px;
+    flex: 1 0 200px;
     background: #fffdfd;
-    border-radius: 12px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-bottom: 20px;
+    box-shadow: 10px 5px 5px rgb(30, 30, 27);
+    opacity: 0.9;
     padding: 10px;
-     box-shadow: 10px 5px 5px rgb(30, 30, 27);
-     opacity: 0.9;
-    
+    border-radius: 20px;
 }
 
 .card:hover{
     transform: scale(1.1);
+    margin: 30px;
 }
 
-button {
+/* button {
  
     padding: 8px 20px;
     border: none;
@@ -38,7 +33,23 @@ button {
     color: white;
     cursor: pointer;
     font-size: 12px;
+} */
+
+button{
+    padding: 14px 28px;
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    margin: auto;
+    width: 200px;    
+    align-self: center;
+    background:linear-gradient( 90deg,#1a73e8,#4facfe) ;
+    box-shadow: 0 8px 20px rgba(0,0 , 0, 0.25);
+
 }
+
 button:hover{
     background: green;
     transform: scale(1.3);

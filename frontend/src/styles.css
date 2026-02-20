@@ -1,17 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
-
-* {
+*{
     margin: 0;
     padding: 0;
+        /* height: 100vh; */
+    width: 100%;
+    font-family: Arial, sans-serif; 
+    list-style: none;
+    text-decoration: none;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* Hauteur de l'écran */
-    background-image: url('assets/images/interieur.png');
-    background-size: cover;      /* L'image couvre tout */
-    background-repeat: no-repeat; /* Pas de répétition */
-    background-position: center;  /* Centrée */
-    font-family: Arial, sans-serif; 
+
+/* body{
+    height: 100vh;
+    width: 100vw;
+    
+    background-color: #0F4C5C;
+    background-image: url('assets/images/depositphotos_239535758-stock-photo-blue-orange-hexagons-modern-background.jpg');
+    background-size: cover ;
+} */
+
+h1 {
+
+    text-align: center;
+    color:rgb(255, 255, 255);
+    padding-top: 150px;
+    font-size: xx-large;
+    margin-top: 50px;}
+
+
+
+    /* styles.css NavBar */
+/* @media screen and (max-width: 900px) {
+
+  .navbar2 .navlinks {
+    display: none;
+  }
+
+  .navbar2 .menu-humburger {
+    display: block;
+  }
+}
+ */
+
+
+/* ===== NAVBAR RESPONSIVE ===== */
+@media screen and (max-width: 900px) {
+
+   .navbar2{
+      padding: 0;
+    }
+
+  /* on affiche le burger */
+  .navbar2 .menu-humburger {
+
+  
+    display: block !important;
+  }
+
+
+  .navlinks {
+    top: 0;
+   right: 0;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.166);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+  }
+
+  .navlinks ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar2 .navlinks ul li {
+    margin: 25px 0  ;
+    font-size: 1.2em;
+  }
+
 }
