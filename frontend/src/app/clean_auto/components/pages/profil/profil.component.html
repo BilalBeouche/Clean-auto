@@ -2,30 +2,34 @@
 
 
   
+  <p>Bienvenue {{ authService.getUserName() }} !</p>
   <div class="container">
+    @if(authService.isAuthenticated()) {
+      <div class="card">
+        <h3>Mes coordonnes</h3>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     
-    <div class="card">
-      <h3>Mes coordonnes</h3>
-      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <label for="">Nom de famille :</label>
+          <input type="text" formControlName="firstName">
   
-        <label for="">Nom de famille :</label>
-        <input type="text" formControlName="firstName">
-
-        <label for="">Prénom :</label>
-        <input type="text" formControlName="lastName">
-
-        <label for="">Email :</label>
-        <input type="email" formControlName="email">
-
-        <label for="">Téléphone : </label>
-        <input type="email" formControlName="phoneNumber">
+          <label for="">Prénom :</label>
+          <input type="text" formControlName="lastName">
   
-        <button class="buttonValider" type="submit">Mettre à jour</button>
+          <label for="">Email :</label>
+          <input type="email" formControlName="email">
   
-      </form>
+          <label for="">Téléphone : </label>
+          <input type="email" formControlName="phoneNumber">
+    
+          <button class="buttonValider" type="submit">Mettre à jour</button>
+    
+        </form>
+    
+      </div>
   
-    </div>
-
+      
+    }@else {
+      <p>Veuillez vous connecter pour voir votre profil.</p>
+    }
   </div>
-  
 

@@ -1,15 +1,16 @@
-<h1>Ce que disent nos clients</h1>
 
 <div class="avis-section">
-
+  
   <div class="avis-container">
+    <h1>Ce que disent nos clients</h1>
     @for (avis of afficherAvis; track $index) {
       <div class="cardAvis">
         <img src="https://randomuser.me/api/portraits/men/32.jpg">
         <div class="etoiles">⭐⭐⭐⭐</div>
         <p>{{avis.commentaire}}</p>
         <p>{{avis.dateAvis}}</p>
-        <div class="note">{{avis.note}} /10</div>
+        <!-- <div class="note">{{avis.note}} /10</div> -->
+        <p>{{avis.note}} /10</p>
       </div>
     }
   </div>

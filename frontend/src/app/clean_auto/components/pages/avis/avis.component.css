@@ -13,6 +13,8 @@
   gap: 20px;
   flex-wrap: wrap;
   width: 100%;
+  border: 1px solid black;
+
 }
 
 .cardAvis {
@@ -20,7 +22,8 @@
   padding: 30px;
   border-radius: 15px;
   position: relative;
-  width: 300px;
+  width: 400px;
+  border: 1px solid black;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
@@ -37,23 +40,21 @@
 
 .etoiles {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 40px;
+  
 }
 
 .cardAvis p {
-  margin-top: 50px;
+  
+  margin-top: 30px;
+  padding: 10px;
   font-size: 14px;
   color: #333;
-}
-
-
-.note {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
   font-weight: bold;
 }
+
+
+
 
 
 .cardAvis1 {

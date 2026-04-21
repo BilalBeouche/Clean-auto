@@ -5,6 +5,16 @@ body{
     background-size: cover ;
 }
 
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
 /* ===== NAVBAR RESPONSIVE ===== */
 @media screen and (max-width: 900px) {
 

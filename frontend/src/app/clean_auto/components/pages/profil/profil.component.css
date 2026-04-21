@@ -1,12 +1,15 @@
 .container {
-
-    display: flex;
-    align-items: center;
+    /* display: flex;
     justify-content: center;
-    opacity: 90%;
-    border-radius: 20px;
+    align-items: center;
 
+}
 
+p {
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 30px;
 }
 
 form {
@@ -79,4 +82,5 @@ input {
 /* effet clic*/
 .buttonValider:active {
     transform: scale(0.97);
+}
 }

@@ -48,3 +48,10 @@ button {
     font-weight: bold;
     color: red;
 }
+
+.login-form{
+    padding:30px;
+    width: 500px;
+    border: 1px solid black;
+    margin: 0 auto;
+}

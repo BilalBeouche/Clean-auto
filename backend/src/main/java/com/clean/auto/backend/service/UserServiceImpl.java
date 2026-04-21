@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
             throw new ResourceAlreadyExistsException("Adresse mail déjà existante : " + user.getEmail());
         }
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEmail(user.getEmail().toLowerCase());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // rôle par defaut à l'inscription
         Role roleUtilisateur = roleRepository.findByTypeRole(RoleType.UTILISATEUR)
