@@ -73,7 +73,6 @@ public class UserServiceImpl implements UserService {
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {
             existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        System.out.println("Mot de passe encodé en base : " + user.getPassword());
 
         return usersRepository.save(existingUser);
     }

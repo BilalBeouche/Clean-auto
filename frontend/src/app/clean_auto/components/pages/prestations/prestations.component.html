@@ -40,9 +40,17 @@
                     {{ prestation.description }}
                 </p>
 
+            @if(!authService.isLoggedIn()){
+
                 <a routerLink="/login" class="btn btn-primary mt-auto">
                     Connectez-vous pour réserver
                 </a>
+            } @else{
+                  <a routerLink="/prestations" class="btn btn-primary mt-auto">
+                    Choisir
+                </a>
+
+            }
 
             </div>
 

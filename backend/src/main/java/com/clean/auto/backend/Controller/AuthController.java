@@ -48,12 +48,8 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
 
-        System.out.println("Password reçu : " + request.getPassword());
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-
-        System.out.println(
-                " COUCOU " + new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
         final UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         System.out.println("3");
