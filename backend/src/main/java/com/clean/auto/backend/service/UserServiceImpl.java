@@ -51,6 +51,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Users> getAllUsers() {
+
+        Users user = getCurrentUsers();
+
+        if(user.getRole().equals("ADMIN")){
+            throw new RuntimeException("Acces refusé");
+        }
         return usersRepository.findAll();
     }
 
@@ -101,7 +107,9 @@ public class UserServiceImpl implements UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
 
+
         return usersRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     }
+    
 
 }
