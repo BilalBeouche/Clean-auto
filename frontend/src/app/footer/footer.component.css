@@ -1,7 +1,25 @@
-p { 
-    border: 1px solid black;
-    width: 100%;
-    position: absolute;
-    background-color: bisque;
-    margin: 20px;
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 30px;
+    padding-left: 60px;
+    padding-top: 20px;
+}
+
+.footer-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-container li {
+    margin-bottom: 10px;
+}
+
+footer p {
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 20px;
 }
