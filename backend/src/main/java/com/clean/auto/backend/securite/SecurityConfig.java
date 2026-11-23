@@ -60,7 +60,7 @@ public class SecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of("http://localhost:4200")); // ⚠️ EXACT
+        config.setAllowedOrigins(List.of("http://localhost:4200"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setAllowCredentials(true);
@@ -83,7 +83,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() //
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/users/**").permitAll()
-                        .requestMatchers("/api/allUsers/**").permitAll()
+                        .requestMatchers("/api/allUsers/**").hasRole("ADMIN")
                         .requestMatchers("/api/updateMe/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/updateUser/{id}/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/deleteUser/{id}/**").authenticated()
@@ -93,7 +93,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/prestations/deletePresta/{id}/**").permitAll()
 
                         .requestMatchers("/api/avis/allAvis").permitAll()
-                        .requestMatchers("/api/avis/createAvis").permitAll()
+                        .requestMatchers("/api/avis/createAvis").authenticated()
                         .requestMatchers("/api/updateAvis/{id}").permitAll()
 
                         .requestMatchers("/api/vehicules/**").authenticated()
@@ -103,8 +103,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/reservation/allReservationByUser/**").authenticated()
                         .requestMatchers("/api/reservation/deleteReservation/{id}**").authenticated()
 
-                        .requestMatchers("/api/me/**").hasRole("UTILISATEUR")
-                        .requestMatchers("/api/me/**").hasRole("ADMIN")
+                        .requestMatchers("/api/me/**").authenticated()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

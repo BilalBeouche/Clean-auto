@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
             throw new ResourceAlreadyExistsException("Adresse mail déjà existante : " + user.getEmail());
         }
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEmail(user.getEmail().toLowerCase());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // rôle par defaut à l'inscription
         Role roleUtilisateur = roleRepository.findByTypeRole(RoleType.UTILISATEUR)
@@ -51,6 +51,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Users> getAllUsers() {
+
+        Users user = getCurrentUsers();
+
+        if(user.getRole().equals("ADMIN")){
+            throw new RuntimeException("Acces refusé");
+        }
         return usersRepository.findAll();
     }
 
@@ -73,7 +79,6 @@ public class UserServiceImpl implements UserService {
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {
             existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        System.out.println("Mot de passe encodé en base : " + user.getPassword());
 
         return usersRepository.save(existingUser);
     }
@@ -102,7 +107,9 @@ public class UserServiceImpl implements UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
 
+
         return usersRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     }
+    
 
 }

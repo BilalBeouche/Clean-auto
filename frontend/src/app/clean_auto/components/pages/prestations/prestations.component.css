@@ -1,4 +1,4 @@
-
+/* 
 .cards{
     display: flex;
     margin: auto;
@@ -22,7 +22,7 @@
 .card:hover{
     transform: scale(1.1);
     margin: 30px;
-}
+} */
 
 /* button {
  
@@ -34,7 +34,7 @@
     cursor: pointer;
     font-size: 12px;
 } */
-
+/* 
 button{
     padding: 14px 28px;
     font-size: 18px;
@@ -58,4 +58,15 @@ button:hover{
 h1 {
 
     text-align: center;
+} */
+
+
+.card {
+  transition: transform 0.7s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }

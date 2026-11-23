@@ -49,5 +49,19 @@ export class AuthService {
     return user ? user.sub : '';
   }
 
+  isAuthenticated(): boolean{
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+    try {
+      const decodedToken = jwtDecode<any>(token);
+      const currentTime = Math.floor(Date.now() / 1000);
+      return decodedToken.exp > currentTime;
+    } catch (error) {
+      return false;
+    }
+  }
+
 
 }
